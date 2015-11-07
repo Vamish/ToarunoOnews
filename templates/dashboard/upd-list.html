@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>删除ONEWS - 哦新闻</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>
+    <link rel="icon" href="{{ url_for('static',filename='img/icon.png',_external=True ) }}"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css',_external=True) }}">
+    <style>
+        .del-list {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .del-item {
+            width: 100%;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .del-item img {
+            width: 310px;
+            float: left;
+        }
+
+        .upd {
+            width: calc(100% - 310px);
+            height: 310px;
+            background-color: #dfdfdf;
+            float: left;
+            text-align: center;
+            position: relative;
+        }
+
+        .upd:hover {
+            background-color: #c3c3c3;
+        }
+
+        i.fa.fa-wrench {
+            position: absolute;
+            top: 50%;
+            font-size: 40px;
+            margin-top: -20px;
+            color: black;
+        }
+
+        .del-item header {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .del-item h2 {
+            line-height: 5px;
+            font-size: 14px;
+            text-indent: 8px;
+        }
+
+        .del-item h1 {
+            line-height: 30px;
+            font-size: 16px;
+        }
+
+        .del-item h1:before {
+            content: '《';
+        }
+
+        .del-item h1:after {
+            content: '》';
+        }
+
+        @media (max-width: 480px) {
+            .del-item img {
+                width: 100%;
+                display: block;
+            }
+
+            .upd {
+                width: 100%;
+                height: 46px;
+                padding: 10px 0;
+                display: block;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        <header class="clearfix">
+            <a href="{{ url_for('dashboard',_external=True) }}">
+                <img class="sm-logo" src="../../static/img/sm-logo.png" alt="logo"/>
+            </a>
+        </header>
+        <ul class="del-list">
+            {% for onews in onewsList %}
+                <li class="del-item clearfix">
+                    <img src="{{ onews["title_img"] }}" alt="{{ onews["title"] }}">
+                    <header>
+                        <h2>{{ onews["time"] }}</h2>
+
+                        <h1>{{ onews['title'] }}</h1>
+                    </header>
+                    <a class="upd" href="./update/{{ onews['_id'] }}" data-oid="{{ onews["_id"] }}">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+</body>
+</html>

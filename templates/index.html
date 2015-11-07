@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>ONEWS 哦·新闻 - 在不正经的路上奉献终身</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;user-scalable=no;">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>pychatrm
+    <script src="{{ url_for('static',filename='js/jquery-1.10.2.min.js',_external=True) }}"></script>
+    <style>
+        .news-list {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .onews {
+            width: 310px;
+            height: 310px;
+            margin: 0 25px 25px 0;
+            float: left;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .onews:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .onews-wrapper {
+            width: 100%;
+            height: 310px;
+            position: relative;
+            background: rgba(234, 234, 234, 0.9) url("{{ url_for('static',filename='img/bg.png',_external=True) }}");
+        }
+
+        .onews img {
+            width: 100%;
+        }
+
+        .onews img.active {
+            width: 85%;
+        }
+
+        .onews header {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .onews h2 {
+            line-height: 5px;
+            font-size: 14px;
+            text-indent: 8px;
+        }
+
+        .onews h1 {
+            line-height: 30px;
+            font-size: 16px;
+        }
+
+        .onews h1:before {
+            content: '《';
+        }
+
+        .onews h1:after {
+            content: '》';
+        }
+
+        @media (max-width: 480px) {
+            .news-list {
+                margin-top: 20px;
+            }
+
+            .onews {
+                width: 100%;
+                margin: 0 auto 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        <header class="clearfix">
+            <a href="{{ url_for('index',_external=True) }}">
+                <img class="sm-logo" src="../static/img/sm-logo.png" alt="logo"/>
+            </a>
+        </header>
+        <ul class="news-list clearfix">
+            {% for onews in onewsList %}
+                <li class="onews" data-newsid="{{ onews["_id"] }}" data-type="{{ onews["type"] }}">
+                    <div class="onews-wrapper">
+                        <img src="{{ url_for('static',filename=onews['title_img'].rsplit('static/',1)[1],_external=True) }}">
+                        <header>
+                            <h2>{{ onews["time"] }}</h2>
+
+                            <h1>{{ onews['title'] }}</h1>
+                        </header>
+                    </div>
+                </li>
+            {% endfor %}
+            <li class="onews" data-type="3" data-from="" data-to="">
+                <img src="{{ url_for('static',filename='img/more.jpg',_external=True) }}">
+            </li>
+        </ul>
+    </div>
+</section>
+<script>
+    var ul = $('.news-list');
+
+    $(ul).delegate('.onews', 'click', function () {
+        console.log($(this).data('type'));
+        switch ($(this).data('type')) {
+            case 0:
+            case 1:
+            case 2:
+                location.href = 'onews/' + $(this).data('newsid');
+                break;
+            case 3:
+                alert('查看更多');
+                break;
+        }
+    });
+
+    $(document).ready(function () {
+        $('.onews-wrapper').hover(function () {
+            $($(this).children()[0]).toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

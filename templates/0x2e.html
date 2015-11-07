@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>ONEWS - 哦新闻</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>
+    <link rel="icon" href="{{ url_for('static',filename='img/icon.png',_external=True ) }}"/>
+    <script src="{{ url_for('static',filename='js/jquery-1.10.2.min.js',_external=True) }}"></script>
+    <style>
+        label {
+            width: 100px;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        form {
+            width: 460px;
+            margin: 30px auto;
+        }
+
+        .attr {
+            margin: 10px 0;
+        }
+
+        #title {
+            width: 398px;
+        }
+
+        #cpright_remark {
+            width: 264px;
+        }
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        <header class="clearfix">
+            <a href="{{ url_for('index',_external=True) }}">
+                <img class="sm-logo" src="../static/img/sm-logo.png" alt="logo"/>
+            </a>
+        </header>
+        <div class="main-contain">
+            <form action="/onews" method="POST">
+                <div class="attr">
+                    <label for="title">标题：</label>
+                    <input type="text" id="title" name="title"/>
+                </div>
+                <div class="attr">
+                    <label for="title_img">标题图片(正方形)：
+                    </label>
+                    <input type="file" id="title_img" name="title_img"/>
+                </div>
+                <div class="attr"><label for="content_img">内容图：
+                </label>
+                    <input type="file" id="content_img" name="content_img"/>
+                </div>
+                <div class="attr">
+                    <select name="type" id="type">
+                        <option value="default">选择类型</option>
+                        <option value="0">普通内容</option>
+                        <option value="1">特殊内容</option>
+                        <option value="2">广告</option>
+                    </select>
+                    <select name="cpright" id="cpright">
+                        <option value="default">选择版权信息</option>
+                        <option value="0">原创</option>
+                        <option value="1">授权转载</option>
+                    </select>
+                    <input id="cpright_remark" type="text" placeholder="输入版权备注，如链接或文字"/>
+                </div>
+                <button>提交</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

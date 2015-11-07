@@ -1,0 +1,19 @@
+*{margin: 0;padding: 0;outline: none;-webkit-transition: all 460ms;-moz-transition: all 460ms;-ms-transition: all 460ms;-o-transition: all 460ms;transition: all 460ms;}
+
+html,body{width: 100%;height: 100%;font:16px/1.3 'Arial','Microsoft YaHei'}
+
+ul,li{list-style: none;}
+
+.clearfix:before,
+.clearfix:after{content:" ";display:table}
+.clearfix:after{clear:both}
+
+.wrap-container{width: 980px;margin: 0 auto;height: 100px;}
+.wrap-container > header{width: 100%;padding: 40px 0 30px;border-bottom: 1px solid black;}
+.sm-logo{width: 300px;margin: 0 auto;display: block;}
+
+@media (max-width: 480px) {
+    .wrap-container{width: 96%;margin: 0 auto;}
+    .wrap-container > header{width:100%; padding: 20px 0;border-bottom: 1px solid black;}
+    .sm-logo{width: 180px;margin: 0 auto;display: block;}
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>哦买糕，找不到该新闻 - ONEWS 哦·新闻</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>
+    <link rel="icon" href="{{ url_for('static',filename='img/icon.png',_external=True ) }}"/>
+    <style>
+        body {
+            background-color: #f85b5b;
+        }
+
+        .wrap-container > header {
+            padding-top: 0;
+            border-bottom-color: white;
+        }
+
+        .sm-logo {
+            width: 500px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #nf {
+            margin: 100px auto;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            #nf {
+                margin-top: 100px;
+                width: 100%;
+            }
+
+            .wrap-container > header {
+                border-bottom-color: #939393;
+            }
+
+            .sm-logo {
+                width: 300px;
+                margin: 0 auto;
+                display: block;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        {{ name }}
+        <header class="clearfix">
+            <a href="{{ url_for('index',_external=True) }}">
+                <img class="sm-logo" src="{{ url_for('static',filename='img/sm-logo-404.png',_external=True) }}"
+                     alt="logo"/>
+            </a>
+        </header>
+        <img id="nf" src="{{ url_for('static',filename='img/500.png',_external=True) }}" alt=""/>
+    </div>
+</section>
+<script>
+</script>
+</body>
+</html>

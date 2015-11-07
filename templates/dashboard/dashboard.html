@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>ONEWS 哦·新闻 - 在不正经的路上奉献终身</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;user-scalable=no;">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>
+    <link rel="icon" href="{{ url_for('static',filename='img/icon.png',_external=True ) }}"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css',_external=True) }}">
+    <style>
+
+        .op-list {
+            margin-top: 30px;
+        }
+
+        .op-list li {
+            width: 310px;
+            margin: 0 25px 25px 0;
+            float: left;
+            text-align: center;
+            border-radius: 2px;
+            padding: 30px 0;
+            cursor: pointer;
+            background-color: #ededed;
+        }
+
+        .op-list li:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .op-list li:hover {
+            background-color: #d2d2d2;
+        }
+
+        .op-list li i {
+            margin-bottom: 10px;
+            font-size: 60px;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .op-list li {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        <header class="clearfix">
+            <a href="{{ url_for('index',_external=True) }}">
+                <img class="sm-logo" src="../../static/img/sm-logo.png" alt="logo"/>
+            </a>
+        </header>
+        <ul class="op-list clearfix">
+            <li onclick="location.href='{{ url_for("fun_add") }}'">
+                <i class="fa fa-plus"></i>
+                新建
+            </li>
+            <li onclick="location.href='{{ url_for("fun_upd_list") }}'">
+                <i class="fa fa-wrench"></i>
+                更新
+            </li>
+            <li onclick="location.href='{{ url_for("fun_del") }}'">
+                <i class="fa fa-trash"></i>
+                删除
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

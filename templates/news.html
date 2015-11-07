@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ onews["title"] }} - ONEWS 哦·新闻</title>
+    <meta property="wb:webmaster" content="360d81d9d306f0a4"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ONEWS 哦新闻 一个打算不正经的网站 DIVINITI">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css',_external=True ) }}"/>
+    <link rel="icon" href="{{ url_for('static',filename='img/icon.png',_external=True ) }}"/>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <meta property="og:type" content="article"/>
+    <meta property="og:{{ request.base_url }}" content="文章的URL地址"/>
+    <meta property="og:{{ onews['title'] }}" content="文章的显示名称标题"/>
+    <meta property="og:{{ onews['title'] }}" content="文章的文字描述"/>
+    <meta property="og:{{ url_for('static',filename=onews['title_img'].rsplit('static/',1)[1],_external=True) }}"
+          content="文章的显示图片"/>
+    <style>
+        .main-contain {
+            padding: 30px 0;
+        }
+
+        article {
+            width: 640px;
+            float: left;
+        }
+
+        article img {
+            width: 100%;
+        }
+
+        aside {
+            width: 310px;
+            float: right;
+        }
+
+        aside img {
+            width: 100%;
+        }
+
+        aside header {
+            width: 310px;
+            position: absolute;
+            margin-top: -38px;
+        }
+
+        aside h2 {
+            line-height: 5px;
+            font-size: 14px;
+            text-indent: 8px;
+        }
+
+        aside h1 {
+            line-height: 30px;
+            font-size: 16px;
+        }
+
+        aside h1:before {
+            content: '《';
+        }
+
+        aside h1:after {
+            content: '》';
+        }
+
+        hr {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        #view {
+            color: #adadad;
+        }
+
+        @media (max-width: 480px) {
+            .main-contain {
+                padding: 20px 0;
+            }
+
+            aside, article {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+<section class="panel">
+    <div class="wrap-container">
+        <header class="clearfix">
+            <a href="{{ url_for('index',_external=True) }}">
+                <img class="sm-logo" src="{{ url_for('static',filename='img/sm-logo.png',_external=Ture) }}"
+                     alt="logo"/>
+            </a>
+        </header>
+        <div class="main-contain clearfix">
+            <aside>
+                <img id="title_img"
+                     src="{{ url_for('static',filename=onews['title_img'].rsplit('static/',1)[1],_external=True) }}">
+
+                <header>
+                    <h2>{{ onews['time'] }}</h2>
+
+                    <h1>{{ onews['title'] }}</h1>
+                </header>
+            </aside>
+            <article>
+                <img id="content_img"
+                     src="{{ url_for('static',filename=onews['content_img'].rsplit('static/',1)[1],_external=True) }}">
+
+                <hr/>
+                <img src="{{ url_for('static',filename='img/end.png',_external=True) }}" alt=""/>
+            </article>
+            <aside>
+                <p>备注：{{ onews['cp_remark'] }}</p>
+
+                <p id="view">浏览量：{{ onews['view'] }}
+                    <wb:share-button addition="number" type="button" ralateUid="2025660943"
+                                     style="  top: 7px;position: relative;"></wb:share-button>
+                </p>
+            </aside>
+        </div>
+    </div>
+</section>
+</body>
+</html>
